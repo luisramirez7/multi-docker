@@ -16,15 +16,13 @@ after_success:
     - docker build -t luisatjayacompany/multi-nginx ./nginx
     - docker build -t luisatjayacompany/multi-server ./server
     - docker build -t luisatjayacompany/multi-worker ./worker
-    # Login
+
     - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-    # Push to Docker hub
+
     - docker push luisatjayacompany/multi-client
     - docker push luisatjayacompany/multi-nginx
     - docker push luisatjayacompany/multi-server
     - docker push luisatjayacompany/multi-worker
-
-
 deploy:
     edge: true
     provider: elasticbeanstalk
